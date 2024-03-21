@@ -1,0 +1,26 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]  # Run CI on push to main branch
+  pull_request:
+    branches: [ main ]  # Run CI on pull requests targeting main branch
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Setup .NET Core SDK
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: '6.0.x'  # Use the desired .NET Core version
+
+    - name: Build and test
+      run: |
+        dotnet restore
+        dotnet build --configuration Release
+        dotnet test --configuration Release --logger trx --results-directory testresults
