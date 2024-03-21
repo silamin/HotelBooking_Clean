@@ -17,7 +17,7 @@ jobs:
     - name: Setup .NET Core SDK
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: '6.0.x'  # Use the desired .NET Core version
+        dotnet-version: 'net8.0'  # Use the desired .NET Core version
 
     - name: Build and test
       run: |
